@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+
+// 가상 요소를 정의한 JSX 파일 (App.js)
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

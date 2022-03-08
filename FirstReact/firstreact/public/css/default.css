@@ -1,0 +1,40 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    height:100%;
+}
+
+/* footer 를 제외한 모든 contents 를 감싸는 영역   */
+/* 컨텐츠가 화면보다 작던 길던(내용이 짧던 많던) footer는 최하단에 고정된다*/
+.gw{
+    min-height:100%;
+    height:auto;
+    margin-bottom:-95px;
+    padding-bottom: 91px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+a{
+    color:black;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+    color: black;
+}
+
+#logo,
+#subnav .inner, 
+.sub,
+#myinfo {
+  cursor: pointer;
+}
+

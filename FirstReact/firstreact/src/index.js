@@ -7,15 +7,19 @@ import ReactDOM from 'react-dom';
 // 각각의 jsx 가 export 하는 함수 이름과 반드시 일치하지 않아도 된다(메소드와 유사)
 import Header from './layout/headerComponent';
 import Footer from './layout/footerComponent';
+import LocationQuickSearch from './home/search/locationQuickSearch'
 
 
 import reportWebVitals from './reportWebVitals';
+
+
+
 
 ReactDOM.render(
   <React.StrictMode>
     <Header />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('header')
 );
 
 ReactDOM.render(
@@ -25,6 +29,12 @@ ReactDOM.render(
   document.getElementById('footer')
 );
 
+ReactDOM.render(
+  <React.StrictMode>
+    <LocationQuickSearch />
+  </React.StrictMode>,
+  document.getElementById('location')
+)
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

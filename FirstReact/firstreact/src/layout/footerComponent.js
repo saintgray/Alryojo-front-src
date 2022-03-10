@@ -5,7 +5,7 @@ import './footer.css';
 function Footer(){
     return(
 
-        <footer>
+        
             <div id="footerwrap">
             
                 <div className="d-flex flex-row flex-wrap justify-content-center" id="innerfooterwrap">
@@ -16,7 +16,7 @@ function Footer(){
                     <div className="f-info mx-4">
                         
                         <ul className="f-list">
-                            <li><span class="head">회사소개</span></li>
+                            <li><span className="head">회사소개</span></li>
                             <li>알려드림</li>
                             <li>채용안내</li>
                         </ul>
@@ -45,7 +45,7 @@ function Footer(){
                     </div>
                 </div>
             </div>
-        </footer> 
+        
     )
 }
 

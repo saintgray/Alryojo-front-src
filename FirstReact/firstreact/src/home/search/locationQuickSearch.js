@@ -49,7 +49,7 @@ function locationQuickSearch(){
         그리고 어떤 방식으로 들어오는 요청에 대해서 허가할 지도 설정이 가능하다 (allowedMethod)
         */
         
-
+    getLocations();
 
         
 
@@ -58,20 +58,20 @@ function locationQuickSearch(){
 
     
 
-    let [location,setLocation] =  useState(getLocations);
-    var locArr=location;
-    for(let i=0; i<location.length; i++){
+   // let [location,setLocation] =  useState(getLocations);
+   // var locArr=location;
+    /* for(let i=0; i<location.length; i++){
         locArr.push(<div className="mx-3 my-2">
                         <span className="d-none">location[i]</span>
                         <span className="locName btn btn-orange rounded-pill"></span>
                     </div>
                         );
-    }
+    } */
 
     return(
 
        
-        locArr
+        <div></div>
            
 
     );

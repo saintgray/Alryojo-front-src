@@ -26,3 +26,9 @@
   background-color: 	white;  
 }
 
+#searchicon{
+  height:100%;
+}
+#searchbar{
+  border-left: 0;
+}

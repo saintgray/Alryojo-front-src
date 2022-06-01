@@ -7,15 +7,16 @@ import axios from 'axios';
 
 function getLocations(){
     
-        axios.post('http://localhost:8080/mnm/loc/list')
+        axios.get('/locations')
          .then(function(response){
             console.log(response);
             var data=response.data;
             return data;
             
          })
-         .catch(function(response){
-             console.log(response);
+         .catch(function(error){
+             console.log('cated err...');
+             console.log(error.response);
              return null;
          });
 

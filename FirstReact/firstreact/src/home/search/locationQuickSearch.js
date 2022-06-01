@@ -12,6 +12,7 @@ function getLocations(){
             console.log(response);
             var data=response.data;
             return data;
+            //test
             
          })
          .catch(function(error){

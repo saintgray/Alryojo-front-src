@@ -1,5 +1,7 @@
 import React from 'react';
+import {Key,Person} from 'react-bootstrap-icons'
 import '../../style/common/login.css';
+
 
 const bgWhite={backgroundColor:'#fff'}
 
@@ -17,7 +19,9 @@ class Login extends React.Component{
 
                         
                         <div className="input-group">
-                            <span className="input-group-text" style={bgWhite}><i className="bi bi-person-fill fs-4"></i></span>
+                            <span className="input-group-text" style={bgWhite}>
+                            <Person size={20}/>
+                            </span>
                             <input type="text" className="form-control" placeholder="이메일" name="username" id="m_email" />
                         </div>
                         
@@ -26,7 +30,9 @@ class Login extends React.Component{
                         
                         
                         <div className="input-group">	
-                            <span className="input-group-text" style={bgWhite}><i className="bi bi-key-fill fs-4"></i></span>
+                            <span className="input-group-text" style={bgWhite}>
+                            <Key size={20}/>
+                            </span>
                             <input type="password" className="form-control" placeholder="비밀번호" name="password" id="m_pw" />					
                         </div>
                         

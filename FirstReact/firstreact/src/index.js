@@ -17,20 +17,6 @@ ReactDOM.render(
     </React.StrictMode>,
     document.getElementById('root')
 );
-
-{/* ReactDOM.render( 
-    <React.StrictMode >
-    <Footer / >
-    </React.StrictMode>,
-    document.getElementById('footer')
-);
-
-ReactDOM.render(
-    <React.StrictMode >
-    <LocationQuickSearch / >
-    </React.StrictMode>,
-    document.getElementById('location')
-); */}
     
 reportWebVitals(console.log);
 

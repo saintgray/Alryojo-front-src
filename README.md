@@ -1,2 +1,4 @@
-# React
-React self study repository
+# Make your dreams with Matching!
+
+## stacks : React, Spring F/W, Spring security, Amazon S3, Amazon Cloud Service
+## front-end source

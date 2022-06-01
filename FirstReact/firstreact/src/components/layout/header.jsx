@@ -1,5 +1,6 @@
 import './../../style/header.css';
 import React,{useState} from 'react';
+import {Link} from 'react-router-dom';
 
 
 class Header extends React.Component{
@@ -13,7 +14,9 @@ class Header extends React.Component{
       <div className="App" id="headerwrap">
         <ul className="container d-flex">
           <li className="mr-auto p-2 d-flex flex-wrap">
-            <img src='/images/logo.svg' id="logo" />
+            <Link to='/'>
+              <img src='/images/logo.svg' id="logo" />
+            </Link>
             <div className="input-group inner" id="search">
                 <div className="input-group-prepend">
                   <img className="input-group-text" id='searchicon' src='/images/searchicon.svg' />

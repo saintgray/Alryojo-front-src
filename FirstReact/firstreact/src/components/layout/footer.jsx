@@ -1,5 +1,6 @@
 import './../../style/footer.css';
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 class Footer extends React.Component{
     render(){
@@ -7,7 +8,9 @@ class Footer extends React.Component{
 
             <div id="footerwrap">
                 <div className="d-flex flex-row flex-wrap justify-content-center" id="innerfooterwrap">
-                    <img src='/images/logo.svg' className="mx-4" id="logo"/>
+                    <Link to='/'>
+                        <img src='/images/logo.svg' className="mx-4" id="logo"/>
+                    </Link>
                     <div className="f-info mx-4">
                         <ul className="f-list">
                             <li><span className="head">회사소개</span></li>

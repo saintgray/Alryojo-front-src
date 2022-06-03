@@ -1,9 +1,9 @@
-
 #loginglobalwrap{
-	margin-top:100px;
-	
-	width:370px;
-	
+    width: 370px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 #btnarea{
 	padding:10px;
@@ -29,19 +29,15 @@
 	content:'';
 	display: block;
 	margin-top: 30px;
-	
-	
 }
 
 label[for=autoLogin], #forgetMe{
-	
-	    font-size: 12px;
-	    position: relative;
-	    bottom: 2px;
-	    color: rgb(59,59,59);
-	    font-weight: 400;
-	    cursor:pointer;
-	
+	font-size: 12px;
+	position: relative;
+	bottom: 2px;
+	color: rgb(59,59,59);
+	font-weight: 400;
+	cursor:pointer;
 }
 #autoLogin{
 	cursor: pointer;

@@ -4,7 +4,6 @@ import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
 
 const Home = lazy(() => import("./pages/home/home"));
-
 const Login = lazy(() => import("./pages/common/login"));
 
 class App extends React.Component {
@@ -31,5 +30,4 @@ class App extends React.Component {
     );
   }
 }
-
 export default App;

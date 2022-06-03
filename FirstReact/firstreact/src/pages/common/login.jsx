@@ -6,18 +6,22 @@ import '../../style/common/login.css';
 
 const bgWhite={backgroundColor:'#fff'}
 
-
-
-
+// 객체지향적 프로그래밍을 추구하는 React
+// Component 들은 모두 React.Component 클래스를 상속한다.
+// super(props) > 부모의 props 를 상속받으며
+// 이 컴포넌트에서 사용하려는 state를 추가적으로 정의한다.
+// JAVA 와 다른점은 이 클래스의 field 를 명시하지 않고 생성자에 state 로서 정의하는 것이다.
+// state 또는 React.Component 의 field 로서 상속받아 사용하는 식이다.
 class Login extends React.Component{
-
 
     constructor(props){
         super(props);
         // Login component 에 대한 state 지정
         this.state={
             username:'',
-            password:''
+            password:'',
+            errorMsg:'',
+            testBoolean:false
         }
         // 아래 login method(function) 을 이 Login 이라는 생성자의 변수에 바인딩을 해줘야만
         // 호출시 정상적으로 작동된다.
@@ -26,7 +30,7 @@ class Login extends React.Component{
         // this.login=this.login.bind(this);
 
         // 이를 생략하려면 login 함수를 arrow function 으로 구현하여야 한다.
-        // Line 31.11
+        // Line 35.11
     }
             
     login=()=>{
@@ -36,8 +40,14 @@ class Login extends React.Component{
             .then((resp)=>{
                 console.log(resp);
                 let header = resp.headers;
-                console.log(header.msg);
+                console.log(decodeURI(header.msg).replaceAll("+", " "));
                 console.log(header.routerpath);
+                if(header.msg){
+                    vm.setState({
+                        ...vm.state,
+                        errorMsg:decodeURI(header.msg).replaceAll("+", " ")
+                    })
+                }
             })
             .catch((err)=>{
                 console.log(err.response);
@@ -54,9 +64,8 @@ class Login extends React.Component{
         // 붙여넣는 방법이 있겠으나, 이렇게 하게 되면 바뀌지 않는 변수와 관련이 있는 모든 컴포넌트들이 재 렌더링 되는 문제가 발생한다(성능 저하)
         // 이를 해결 하기 위해서는 아래와 같은 (Line ) 전개구문을 통하여 state 의 일부 값만 변경하여 변경된 부분에 관련된
         // 가상 Dom 요소만 재 랜더링 해주는 방식으로 구현할 수 있다
+        // Line 135 , Line 136 의 테스트 Html 을 주석 해제하고 확인해 보자
 
-        // Line 118 , Line 119 의 테스트 Html 을 주석 해제하고 확인해 보자
-        
         if(param==='id'){
             this.setState({
                 ...this.state,
@@ -68,15 +77,22 @@ class Login extends React.Component{
                 password:event.target.value
             })
         }
-    }        
+    }
+    
+    resetErrorMessage=()=>{
+        this.setState({
+            ...this.state,
+            errorMsg:''
+        })
+    }
 
     render(){
-
         return(
-            
             <div className="container" id="loginglobalwrap">
                 <div className="banner text-center">
                     로그인
+                    {/* state 상태 값에 따라 요소를 보여주고 숨기는 방법 : Vue 의 v-if 와 동일한 결과 */}
+                    {/* {this.state.testBoolean && <h1>testBoolean is true</h1>} */}
                 </div>
                 <div className="container d-flex flex-wrap flex-column justify-content-center p-2" id="insertarea">
                 
@@ -85,7 +101,7 @@ class Login extends React.Component{
                             <span className="input-group-text" style={bgWhite}>
                             <Person size={20}/>
                             </span>
-                            <input type="text" className="form-control" placeholder="이메일" onChange={(e)=>this.bindParamsinState(e,'id')}/>
+                            <input type="text" className="form-control" placeholder="이메일" onChange={(e)=>this.bindParamsinState(e,'id')} onFocus={this.resetErrorMessage} / >
                         </div>
                         <div id="w_email" className="warning my-2">
                         </div>
@@ -94,7 +110,7 @@ class Login extends React.Component{
                             <span className="input-group-text" style={bgWhite}>
                             <Key size={20}/>
                             </span>
-                            <input type="password" className="form-control" placeholder="비밀번호" onChange={(e)=>this.bindParamsinState(e,'pw')}/>					
+                            <input type="password" className="form-control" placeholder="비밀번호" onChange={(e)=>this.bindParamsinState(e,'pw')}  onFocus={this.resetErrorMessage} / >
                         </div>
                         <div id="w_pw" className="warning my-2">
                         </div>
@@ -110,7 +126,8 @@ class Login extends React.Component{
                         </div>
                         
                         {/* authentication failed message area */}
-                        <div id="auth_warning" className="warning text-center">
+                        <div id="auth_warning" className="warning text-center my-2">
+                            {this.state.errorMsg}
                         </div>
                         <div className="my-2" id="btnarea">
                             <button type="button" className="btn btn-general" id="loginbtn" onClick={this.login}>로그인</button>

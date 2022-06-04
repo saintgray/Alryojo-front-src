@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Provider from 'mobx-react';
 
 
 // 가상 요소를 정의한 JSX 파일 (App.js)
 // from 뒤의 경로 jsx 파일을 가져와서 Header (또는 Footer) 라는 값 이름으로 쓰겠다는 말이므로
 // 각각의 jsx 가 export 하는 함수 이름과 반드시 일치하지 않아도 된다(메소드와 유사)
-
 import App from './App';
-
-
 import reportWebVitals from './reportWebVitals';
+
+
+// mobx 상태관리 state 를 정의한 파일들 정의
+const stores={
+    
+}
 
 ReactDOM.render( 
     <React.StrictMode >

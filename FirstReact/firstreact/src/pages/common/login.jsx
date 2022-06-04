@@ -86,6 +86,27 @@ class Login extends React.Component{
         })
     }
 
+    test=()=>{
+        axios.get('/locations',null,{headers:{'Authorization':'Bearer '}})
+            .then((resp)=>{
+                console.log(resp);
+            })
+            .catch((err)=>{
+                console.log(err.response);
+            })
+        
+    }
+
+    adminTest=()=>{
+        axios.post('/admin/adminTest',null,{headers:{'AUthorization':'Bearer 12345'}})
+        .then((resp)=>{
+            console.log(resp);
+        })
+        .catch((err)=>{
+            console.log(err.response);
+        })
+    }
+
     render(){
         return(
             <div className="container" id="loginglobalwrap">
@@ -137,7 +158,11 @@ class Login extends React.Component{
 
                 {/* <h1>{this.state.username}</h1>
                 <h1>{this.state.password}</h1> */}
+                <button className="btn btn-primary" onClick={this.test}>지역정보</button>
+                <button className="btn btn-danger" onClick={this.adminTest}>관리자테스트</button>
             </div>
+
+            
         )
     }
 }

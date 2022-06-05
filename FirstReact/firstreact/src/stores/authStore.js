@@ -1,3 +1,4 @@
+import axios from "axios";
 import { action, observable, inject } from "mobx";
 @inject
 class AuthStore{
@@ -21,5 +22,16 @@ class AuthStore{
             .catch((err)=>{
                 console.log(err.response);
             })
+    }
+    
+    @action
+    logout =() =>{
+        axios.post('/logout')
+        .then((resp)=>{
+            console.log(resp);
+        })
+        .catch((err)=>{
+            alert('오류가 발생하였습니다. 잠시 후 다시 시도하세요');
+        })
     }
 }

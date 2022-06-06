@@ -34,4 +34,4 @@ class AuthStore{
             alert('오류가 발생하였습니다. 잠시 후 다시 시도하세요');
         })
     }
-}
+}vsc

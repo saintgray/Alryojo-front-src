@@ -42,11 +42,14 @@ class Login extends React.Component{
                 let header = resp.headers;
                 console.log(decodeURI(header.msg).replaceAll("+", " "));
                 console.log(header.routerpath);
+                
                 if(header.msg){
                     vm.setState({
                         ...vm.state,
                         errorMsg:decodeURI(header.msg).replaceAll("+", " ")
                     })
+                }else{
+                    localStorage.setItem("jwt",header.jwt);
                 }
             })
             .catch((err)=>{
@@ -87,7 +90,7 @@ class Login extends React.Component{
     }
 
     test=()=>{
-        axios.get('/locations',null,{headers:{'Authorization':'Bearer '}})
+        axios.post('/locations',null,{headers:{'Authorization':'Bearer '+localStorage.getItem("jwt")}})
             .then((resp)=>{
                 console.log(resp);
             })
@@ -98,7 +101,7 @@ class Login extends React.Component{
     }
 
     adminTest=()=>{
-        axios.post('/admin/adminTest',null,{headers:{'AUthorization':'Bearer 12345'}})
+        axios.post('/admin/adminTest',null,{headers:{'Authorization':'Bearer '+localStorage.getItem("jwt")}})
         .then((resp)=>{
             console.log(resp);
         })

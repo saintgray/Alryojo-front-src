@@ -36,9 +36,10 @@ class Login extends React.Component{
     login=()=>{
         let vm= this;
         console.log(this.state);
-        axios.post('/login',new URLSearchParams(vm.state))
+        axios.post('http://localhost/login',new URLSearchParams(vm.state))
             .then((resp)=>{
                 console.log(resp);
+                console.log(resp.headers);
                 let header = resp.headers;
                 console.log(decodeURI(header.msg).replaceAll("+", " "));
                 console.log(header.routerpath);
@@ -90,7 +91,13 @@ class Login extends React.Component{
     }
 
     test=()=>{
-        axios.post('/locations',null,{headers:{'Authorization':'Bearer '+localStorage.getItem("jwt")}})
+        
+        let token = localStorage.getItem("jwt");
+        console.log(token);
+        token=token==null?"":token;
+        console.log('Bearer '+token);
+        let tokenVal='Bearer '+token;
+        axios.get('http://localhost/locations',{headers:{'Authorization':tokenVal}})
             .then((resp)=>{
                 console.log(resp);
             })
@@ -101,7 +108,18 @@ class Login extends React.Component{
     }
 
     adminTest=()=>{
-        axios.post('/admin/adminTest',null,{headers:{'Authorization':'Bearer '+localStorage.getItem("jwt")}})
+        
+        axios.post('http://localhost/admin/adminTest',null,{headers:{'Authorization':'Bearer '+localStorage.getItem("jwt")}})
+        .then((resp)=>{
+            console.log(resp);
+        })
+        .catch((err)=>{
+            console.log(err.response);
+        })
+    }
+
+    logout=()=>{
+        axios.post('http://localhost/logout',null,{headers:{'Authorization':'Bearer '+localStorage.getItem("jwt")}})
         .then((resp)=>{
             console.log(resp);
         })
@@ -163,9 +181,8 @@ class Login extends React.Component{
                 <h1>{this.state.password}</h1> */}
                 <button className="btn btn-primary" onClick={this.test}>지역정보</button>
                 <button className="btn btn-danger" onClick={this.adminTest}>관리자테스트</button>
+                <button className="btn btn-secondary" onClick={this.logout}>로그아웃</button>
             </div>
-
-            
         )
     }
 }

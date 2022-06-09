@@ -1,6 +1,8 @@
 import axios from "axios";
 import { action, observable } from "mobx";
 import UserStore from './userStore';
+import agent from '../agent.js';
+
 
 
 class AuthStore{
@@ -12,19 +14,25 @@ class AuthStore{
         password:''
     }
 
+
     @action login(){
         let vm= this;
-        axios.post('/login',new URLSearchParams(vm.state))
-            .then((resp)=>{
-                console.log(resp);
+        agent.post('login',new URLSearchParams(vm.signInInfo))
+             .then((resp)=>{
+                console.log('responsed successfully');
                 let header = resp.headers;
                 if(header.msg){
                     vm.errorMsg=decodeURI(header.msg).replaceAll("+", " ");
                 }else{
+                    if(header.msg){
+                        vm.errorMsg=header.msg;
+                    }else{
+                        localStorage.setItem("jwt",header.jwt);
+                    }
                     vm.routerPath=header.routerpath;
                 }
-            })
-            .catch((err)=>{
+             })
+             .catch((err)=>{
                 console.log(err.response);
                 alert('server exception occured');
             })

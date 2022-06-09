@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Provider from 'mobx-react';
+import {Provider} from 'mobx-react';
+// import {useStrict} from 'mobx';
 
 
 // 가상 요소를 정의한 JSX 파일 (App.js)
@@ -10,15 +11,22 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 
+// import stores
+import authStore from './stores/authStore';
+
 // mobx 상태관리 state 를 정의한 파일들 정의
 const stores={
-    
+    authStore
 }
 
-ReactDOM.render( 
-    <React.StrictMode >
-    <App / >
-    </React.StrictMode>,
+// useStrict(true);
+
+ReactDOM.render(
+    <Provider {...stores}>
+        {/* <React.StrictMode > */}
+        <App / >
+        {/* </React.StrictMode> */}
+    </Provider>,
     document.getElementById('root')
 );
     

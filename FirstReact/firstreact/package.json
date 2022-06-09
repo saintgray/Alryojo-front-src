@@ -40,5 +40,10 @@
             "last 1 safari version"
         ]
     },
-    "proxy" : "http://localhost"
+    "devDependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.17.12",
+        "@babel/plugin-proposal-decorators": "^7.18.2",
+        "babel-plugin-transform-decorators-legacy": "^1.3.5"
+    },
+    "proxy": "http://localhost"
 }

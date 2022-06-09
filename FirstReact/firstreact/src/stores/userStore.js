@@ -4,7 +4,7 @@ class UserStore{
     @observable loginInfo;
 
     @action pullUser(loginInfo){
-        return 
+        
     }
 }
 

@@ -1,4 +1,5 @@
-const { observable } = require("mobx");
+// const { observable ,action} = require("mobx");
+import { action, observable } from "mobx";
 
 class CommonStore{
 

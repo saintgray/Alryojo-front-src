@@ -1,10 +1,9 @@
-import axios from "axios";
 import { action, observable } from "mobx";
-import UserStore from './userStore';
 import agent from '../agent.js';
+import { autobind } from "core-decorators";
 
 
-
+@autobind
 class AuthStore{
 
     @observable errorMsg = '';
@@ -12,6 +11,19 @@ class AuthStore{
     @observable signInInfo ={
         username:'',
         password:''
+    }
+
+    @action bindUserName(id){
+        this.signInInfo.username=id;
+    }
+    @action bindPassword(password){
+        this.signInInfo.password=password;
+    }
+
+    // debug - bind test
+    @action observeInfo(){
+        console.log(this.signInInfo);
+        return this.signInInfo;
     }
 
 

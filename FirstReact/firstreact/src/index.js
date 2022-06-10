@@ -16,7 +16,7 @@ import authStore from './stores/authStore';
 
 // mobx 상태관리 state 를 정의한 파일들 정의
 const stores={
-    authStore
+    authStore:authStore
 }
 
 // useStrict(true);

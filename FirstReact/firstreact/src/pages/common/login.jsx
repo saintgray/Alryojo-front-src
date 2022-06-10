@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { inject, observer } from 'mobx-react';
 import React , {useState}from 'react';
 import {Key,Person} from 'react-bootstrap-icons'
 import '../../style/common/login.css';
@@ -12,17 +13,33 @@ const bgWhite={backgroundColor:'#fff'}
 // 이 컴포넌트에서 사용하려는 state를 추가적으로 정의한다.
 // JAVA 와 다른점은 이 클래스의 field 를 명시하지 않고 생성자에 state 로서 정의하는 것이다.
 // state 또는 React.Component 의 field 로서 상속받아 사용하는 식이다.
+
+// mobx 에 선언한 상태들을 관리하기 위한 어노테이션 사용
+// @inject 를 통해 이 class 에 상태를 주입한다. index Line:17 - authStore
+@inject('authStore')
+@observer
 class Login extends React.Component{
 
     constructor(props){
+        // 1. 상태관리 라이브러리(mobx) 를 사용하지 않을 시
+        // super(props);
+
+        // Login component 에 대한 state 지정 //
+
+        // this.state={
+        //     username:'',
+        //     password:'',
+        //     errorMsg:'',
+        //     testBoolean:false
+        // }
+
+        // 2. mobx 사용시
+        // mobx 에서 관리하고 있는 store 를 생성자를 통해 주입
         super(props);
-        // Login component 에 대한 state 지정
-        this.state={
-            username:'',
-            password:'',
-            errorMsg:'',
-            testBoolean:false
-        }
+        this.authStore= this.props.authStore;
+
+
+
         // 아래 login method(function) 을 이 Login 이라는 생성자의 변수에 바인딩을 해줘야만
         // 호출시 정상적으로 작동된다.
         
@@ -71,15 +88,9 @@ class Login extends React.Component{
         // Line 135 , Line 136 의 테스트 Html 을 주석 해제하고 확인해 보자
 
         if(param==='id'){
-            this.setState({
-                ...this.state,
-                username:event.target.value
-            })
+            this.authStore.bindUserName(event.target.value);
         }else{
-            this.setState({
-                ...this.state,
-                password:event.target.value
-            })
+            this.authStore.bindPassword(event.target.value);
         }
     }
     
@@ -128,6 +139,16 @@ class Login extends React.Component{
         })
     }
 
+
+    mobxTest=()=>{
+        let info = this.authStore.observeInfo();
+        console.log('In login.jsx - signInInfo : '+info);
+        console.log(info.username);
+        console.log(info.password);
+        info.username='aaaaaaaaaaaaaa';
+        console.log(this.authStore.observeInfo());
+    }
+
     render(){
         return(
             <div className="container" id="loginglobalwrap">
@@ -169,19 +190,19 @@ class Login extends React.Component{
                         
                         {/* authentication failed message area */}
                         <div id="auth_warning" className="warning text-center my-2">
-                            {this.state.errorMsg}
+                            {this.authStore.errorMsg}
                         </div>
                         <div className="my-2" id="btnarea">
                             <button type="button" className="btn btn-general" id="loginbtn" onClick={this.login}>로그인</button>
                         </div>	
                     {/* </form> */}
                 </div>
-
                 {/* <h1>{this.state.username}</h1>
                 <h1>{this.state.password}</h1> */}
                 <button className="btn btn-primary" onClick={this.test}>지역정보</button>
                 <button className="btn btn-danger" onClick={this.adminTest}>관리자테스트</button>
                 <button className="btn btn-secondary" onClick={this.logout}>로그아웃</button>
+                <button className="btn btn-light" onClick={this.mobxTest}>Mobx바인딩테스트</button>
             </div>
         )
     }

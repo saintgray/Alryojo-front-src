@@ -9,7 +9,7 @@ const agent = axios.create({
 
 
 // config interceptors
-instance.interceptors.request.use(request =>{
+agent.interceptors.request.use(request =>{
     console.log('request is intercepted..');
     console.log('method is .. '+request.method);
 
@@ -20,7 +20,7 @@ instance.interceptors.request.use(request =>{
     
     return request;
 })
-instance.interceptors.response.use(response =>{
+agent.interceptors.response.use(response =>{
     console.log('response status is ... ' + response.status);
 })
 

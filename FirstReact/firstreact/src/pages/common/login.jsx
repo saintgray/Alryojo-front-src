@@ -50,6 +50,7 @@ class Login extends React.Component{
         // Line 35.11
     }
             
+    // this method will be moved to store method...
     login=()=>{
         let vm= this;
         console.log(this.state);

@@ -1,8 +1,6 @@
 import { action, observable } from "mobx";
 import agent from '../agent.js';
 import { autobind } from "core-decorators";
-
-
 @autobind
 class AuthStore{
 
@@ -39,7 +37,10 @@ class AuthStore{
                     if(header.msg){
                         vm.errorMsg=header.msg;
                     }else{
-                        localStorage.setItem("jwt",header.jwt);
+                        // localStorage.setItem("jwt",header.jwt);
+                        //
+                        // userStore.js 에 있는 pullUser action 을 사용하고싶음
+                        // ex ) userStore.pullUser({id : header.id})
                     }
                     vm.routerPath=header.routerpath;
                 }

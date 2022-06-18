@@ -2,11 +2,20 @@ import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
+import { observer } from "mobx-react-lite";
 
 const Home = lazy(() => import("./pages/home/home"));
 const Login = lazy(() => import("./pages/common/login"));
 
+
 class App extends React.Component {
+  
+  constructor(props){
+    super(props);
+  }
+  componentDidMount(){
+    console.log(this.props);
+  }
   render() {
     return (
       <Suspense fallback={
@@ -26,6 +35,7 @@ class App extends React.Component {
             <Footer />
           </div>
         </Router>
+        
       </Suspense>
     );
   }

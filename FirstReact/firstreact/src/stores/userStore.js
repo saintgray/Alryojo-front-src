@@ -2,7 +2,7 @@
 import { action, observable } from "mobx";
 
 class UserStore{
-    @observable loginInfo;
+    @observable loginInfo={username:'testname',password:'testpassword'}
 
     @action pullUser(loginInfo){
         this.loginInfo = loginInfo;

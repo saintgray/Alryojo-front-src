@@ -1,4 +1,5 @@
 import axios from 'axios';
+import agent from '../../agent'
 import { inject, observer } from 'mobx-react';
 import React , {useState}from 'react';
 import {Key,Person} from 'react-bootstrap-icons'
@@ -54,7 +55,7 @@ class Login extends React.Component{
     login=()=>{
         let vm= this;
         console.log(this.state);
-        axios.post('http://localhost/login',new URLSearchParams(vm.state))
+        agent.post('login',new URLSearchParams({username:'saintgray0@gmail.com',password:'Angel3028'}),{headers:{"Content-Type":'application/json',Authorization:'Bearer '}})
             .then((resp)=>{
                 console.log(resp);
                 console.log(resp.headers);

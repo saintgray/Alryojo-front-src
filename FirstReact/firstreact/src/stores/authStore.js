@@ -1,6 +1,7 @@
 import { action, observable } from "mobx";
 import agent from '../agent.js';
 import { autobind } from "core-decorators";
+import authService from "../repo/authService"
 @autobind
 class AuthStore{
 
@@ -26,29 +27,28 @@ class AuthStore{
 
 
     @action login(){
-        let vm= this;
-        agent.post('login',new URLSearchParams(vm.signInInfo))
-             .then((resp)=>{
-                console.log('responsed successfully');
-                let header = resp.headers;
-                if(header.msg){
-                    vm.errorMsg=decodeURI(header.msg).replaceAll("+", " ");
-                }else{
-                    if(header.msg){
-                        vm.errorMsg=header.msg;
-                    }else{
-                        // localStorage.setItem("jwt",header.jwt);
-                        //
-                        // userStore.js 에 있는 pullUser action 을 사용하고싶음
-                        // ex ) userStore.pullUser({id : header.id})
-                    }
-                    vm.routerPath=header.routerpath;
-                }
-             })
-             .catch((err)=>{
-                console.log(err.response);
-                alert('server exception occured');
-            })
+        let vm=this;
+        let resp = authService.login(this.signInInfo);
+        console.log(resp);
+            //  .then((resp)=>{
+            //     console.log('responsed successfully');
+            //     let header = resp.headers;
+            //     if(header.msg){
+            //         vm.errorMsg=decodeURI(header.msg).replaceAll("+", " ");
+            //     }else{
+            //         if(header.msg){
+            //             vm.errorMsg=header.msg;
+            //         }else{
+            //             vm.routerPath=header.routerpath;
+            //             return header.jwt;
+            //             // localStorage.setItem("jwt",header.jwt);
+            //         }
+            //     }
+            //  })
+            //  .catch((err)=>{
+            //     console.log(err.response);
+            //     alert('server exception occured');
+            // })
     }
 }
 

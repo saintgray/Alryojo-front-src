@@ -13,10 +13,12 @@ import reportWebVitals from './reportWebVitals';
 
 // import stores
 import authStore from './stores/authStore';
+import userStore from './stores/userStore'
 
 // mobx 상태관리 state 를 정의한 파일들 정의
 const stores={
-    authStore:authStore
+    authStore:authStore,
+    userStore:userStore
 }
 
 // useStrict(true);
@@ -24,7 +26,7 @@ const stores={
 ReactDOM.render(
     <Provider {...stores}>
         {/* <React.StrictMode > */}
-        <App / >
+        <App loginInfo={stores.userStore.loginInfo}/ >
         {/* </React.StrictMode> */}
     </Provider>,
     document.getElementById('root')

@@ -16,8 +16,8 @@ agent.interceptors.request.use(request =>{
     let token = localStorage.getItem('jwt');
     token = token==null?'':token;
     
-    request.headers.Authorization='Bearer '+token;
-    
+    // request.headers.Authorization='Bearer '+token;
+    console.log(request.headers);
     return request;
 })
 agent.interceptors.response.use(response =>{

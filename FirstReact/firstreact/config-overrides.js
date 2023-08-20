@@ -2,7 +2,19 @@ const {
     addDecoratorsLegacy,
     disableEsLint,
     override,
+    addLessLoader,
 } = require("customize-cra");
+const { alias } = require('react-app-rewire-alias');
 
-
-module.exports={webpack:override(disableEsLint(), addDecoratorsLegacy())};
+module.exports = override(
+    addDecoratorsLegacy(),
+    disableEsLint(),
+    addLessLoader({
+        javascriptEnabled: true,
+    }),
+    alias({
+        '@': 'src',
+        '@resource': 'src/resource',
+        '@shared': 'src/shared'
+    })
+)

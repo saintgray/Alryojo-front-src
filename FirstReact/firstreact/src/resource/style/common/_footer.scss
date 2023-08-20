@@ -2,7 +2,9 @@ footer{
     box-shadow: 0 -4px 5px rgb(59 59 59 / 10%);
 }
 
-#footerwrap{
+.footerwrap{
+    max-width: none;
+    height: 92px;
     background-color: rgb(240,240,240);
 }
 .f-list{
@@ -18,20 +20,20 @@ footer{
     font-weight: bold;
     font-size: 16px;
 }
-#innerfooterwrap #logo{
+.innerfooterwrap #logo{
     margin-top: 5px;
 }
 
 @media(max-width: 600px){
 
-    #footerwrap #innerfooterwrap{
+    .footerwrap .innerfooterwrap{
         flex-direction: column !important;
     }
     .f-list{
         text-align: center;
         margin: 24px auto;
     }
-    #innerfooterwrap #logo{
+    .innerfooterwrap #logo{
         margin: 0 auto !important;
     }
 }

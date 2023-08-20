@@ -1,0 +1,28 @@
+#headerwrap {
+  width: 80%;
+  margin: 0px auto;
+  padding-top: 10px;
+}
+
+#logo{
+  width: 120px;
+  height: 50px;
+}
+
+.search-bar {
+  width: 300px;
+  margin-left:15px;
+  input::placeholder {
+    font-size: 15px;
+    color: rgb(187, 187, 187);
+    font-weight: 510;
+  }
+  .search-icon {
+    width:50px;
+    background-color: 	white;
+  }
+  .text-area {
+    height:100%;
+    //border-left: 0;
+  }
+}

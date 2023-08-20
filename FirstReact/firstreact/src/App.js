@@ -1,14 +1,12 @@
-import React, { lazy, Suspense } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/layout/header";
-import Footer from "./components/layout/footer";
-import { observer } from "mobx-react-lite";
+import Header from "@shared/component/Header";
+import Footer from "@shared/component/Footer";
 
-const Home = lazy(() => import("./pages/home/home"));
-const Login = lazy(() => import("./pages/common/login"));
+const Home = lazy(() => import("./alj001/component/Main"));
+const Login = lazy(() => import("./alj002/component/Login"));
 
-
-class App extends React.Component {
+class App extends Component {
   
   constructor(props){
     super(props);
@@ -35,7 +33,6 @@ class App extends React.Component {
             <Footer />
           </div>
         </Router>
-        
       </Suspense>
     );
   }

@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 
-class Home extends React.Component{
+class Main extends Component{
     render(){
         return(
             <div>
                 <h1>this contents should've be home main page contents...</h1>
+                {/*{ img }*/}
             </div>
         )
     }
 }
-export default Home;
+export default Main;

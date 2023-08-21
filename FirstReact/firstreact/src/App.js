@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "@shared/component/Header";
 import Footer from "@shared/component/Footer";
 
-const Home = lazy(() => import("./alj001/component/Main"));
+const MainContainer = lazy(() => import("./alj001/component/MainContainer"));
 const Login = lazy(() => import("./alj002/component/Login"));
 
 class App extends Component {
@@ -16,17 +16,20 @@ class App extends Component {
   }
   render() {
     return (
-      <Suspense fallback={
+      <Suspense
+        fallback = {
           <div>
             <h1>loading....</h1>
           </div>
-        }>
+        }
+
+      >
         <Router>
           <div id="wrap">
-            <div className="gw">
+            <div className="content-global-wrap">
               <Header />
               <Routes>
-                <Route path="/" exact element={<Home />}></Route>
+                <Route path="/" exact element={<MainContainer />}></Route>
                 <Route path="/login" exact element={<Login />}></Route>
               </Routes>
             </div>

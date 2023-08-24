@@ -1,5 +1,4 @@
 import { Component } from "react";
-import { Container } from 'react-bootstrap';
 import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import { autobind } from "core-decorators";
@@ -9,19 +8,17 @@ class BannerView extends Component {
 
   render() {
     const { banners } = this.props;
+    const displayBanner = banners.filter((imageInfo) => imageInfo.displayF);
     return (
-      <Container className="content-area">
-        <Row>
-          { banners.map((path,key) =>
-            <Image
-              className = "main-banner-image"
-              srcSet = { path }
-              height = "auto"
-              key = { key }
-            />)
-          }
-        </Row>
-      </Container>
+        <div className="banner-area" >
+          {/*<Row>*/}
+              <Image
+                className = "main-banner-image"
+                srcSet = { displayBanner && displayBanner[0] && displayBanner[0].resource }
+                height = "auto"
+              />
+          {/*</Row>*/}
+        </div>
     );
   }
 

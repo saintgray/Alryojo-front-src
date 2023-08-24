@@ -9,7 +9,12 @@ import { autobind } from "core-decorators";
 class MainStore {
 
   @observable
-  banners = [Banner1, Banner2, Banner3, Banner4];
+  banners = [
+    { resource: `${ Banner1 }`, displayF: 'Y',},
+    { resource: `${ Banner2 }`,},
+    { resource: `${ Banner3 }`,},
+    { resource: `${ Banner4 }`,},
+  ];
 
   @computed
   get getBanners() { return toJS(this.banners) };
@@ -18,10 +23,12 @@ class MainStore {
   rolling = () => {
     setInterval(() => {
       setTimeout(() => {
-        let _tempBanners = this.banners;
+        let _tempBanners = [...this.banners];
+        _tempBanners[0].displayF = null;
         _tempBanners.push(_tempBanners[0]);
         _tempBanners = _tempBanners.splice(1, _tempBanners.length);
-        this.banners = _tempBanners;
+        _tempBanners[0].displayF = 'Y';
+        this.banners = [..._tempBanners];
       }, 700)
     }, 5000);
   }
